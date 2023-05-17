@@ -1,7 +1,6 @@
-import 'recuperarsenha.dart';
-import 'menuprincipal.dart';
-import 'package:cadastroapp/recuperarsenha.dart';
 import 'package:flutter/material.dart';
+import 'cadusuario.dart';
+import 'recuperarsenha.dart';
 import 'menuprincipal.dart';
 
 void main() {
@@ -13,16 +12,29 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: const Text('Login')),
+        appBar: AppBar(title: const Text('LOGIN')),
         body: _Login(),
       ),
     );
   }
 }
 
-class _Login extends StatelessWidget {
-  String email = '';
-  String pass = '';
+class _Login extends StatefulWidget {
+  const _Login({Key? key}) : super(key: key);
+
+  @override
+  _loginState createState() {
+    return _loginState();
+  }
+}
+
+class _loginState extends State<_Login> {
+  String email = 'teste@gmail.com';
+  String pass = 'abc';
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController senhaController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -33,9 +45,9 @@ class _Login extends StatelessWidget {
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(10),
                 child: const Text(
-                  'Tela de Login app',
+                  'Login',
                   style: TextStyle(
-                      color: Colors.blue,
+                      color: Color.fromARGB(255, 95, 3, 104),
                       fontWeight: FontWeight.w500,
                       fontSize: 30),
                 )),
@@ -43,12 +55,13 @@ class _Login extends StatelessWidget {
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(10),
                 child: const Text(
-                  'Digite os dados',
+                  'Insira seus dados',
                   style: TextStyle(fontSize: 20),
                 )),
             Container(
               padding: const EdgeInsets.all(10),
               child: TextField(
+                controller: emailController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -59,6 +72,8 @@ class _Login extends StatelessWidget {
             Container(
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
               child: TextField(
+                controller: senhaController,
+                cursorColor: Color.fromARGB(255, 94, 14, 14),
                 obscureText: true,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -67,25 +82,28 @@ class _Login extends StatelessWidget {
               ),
             ),
             TextButton(
+              child: const Text(
+                'Esqueci a senha',
+              ),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return recuperarsenha();
                 }));
               },
-              child: const Text(
-                'Esqueci a senha',
-              ),
             ),
             Container(
                 height: 50,
-                padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: ElevatedButton(
                   child: const Text('Login'),
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return menuprincipal();
-                    }));
+                    if (validarAcesso(
+                        emailController.text, senhaController.text)) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return menuprincipal();
+                      }));
+                    }
                   },
                 )),
             Row(
@@ -94,10 +112,13 @@ class _Login extends StatelessWidget {
                 TextButton(
                   child: const Text(
                     'Cadastre aqui',
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {
-                    print('Cadastro aqui');
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return cadusuario();
+                    }));
                   },
                 )
               ],
@@ -106,4 +127,15 @@ class _Login extends StatelessWidget {
           ],
         ));
   }
+}
+
+validarAcesso(String email, String senha) {
+  String _email = "admin@admin";
+  String _senha = "123";
+
+  if (email == _email && senha == _senha) {
+    return true;
+  }
+
+  return false;
 }

@@ -4,9 +4,7 @@ import './senha_entity.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'data_constantes.dart';
-import 'senha_Entity.dart';
-//import 'database_connection.dart';
-import '../Data/database_connection.dart';
+import 'database_connection.dart';
 
 class senhaSQLiteDatasource {
   Future inserirSenha(descricao, login, senha) async {
@@ -14,7 +12,7 @@ class senhaSQLiteDatasource {
     try {
       senha.senhaID = await db.rawInsert('''insert into $SENHA_TABLE_NAME(
               $SENHA_COLUMN_DESCRICAO,
-              $SENHA_COLUMN_LOGIN,              
+              $SENHA_COLUMN_LOGIN,
               $SENHA_COLUMN_SENHA)
               values(
                 '${senha.descricao}','${senha.login}','${senha.senha}') 
@@ -30,18 +28,18 @@ class senhaSQLiteDatasource {
     return await db.query(SENHA_TABLE_NAME);
   }
 
-  Future<List<SenhasEntity>> getAllSenha() async {
+  Future<List<SenhaEntity>> getAllSenha() async {
     final Database db = await DatabaseConnection.getDatabase();
     List<Map> dbResult = await db.rawQuery('SELECT * from $SENHA_TABLE_NAME');
 
-    List<SenhasEntity> senhas = [];
+    List<SenhaEntity> senhas = [];
     for (var row in dbResult) {
       SenhaEntity senha = SenhaEntity();
       senha.senhaID = row['senhaID'];
       senha.descricao = row['descricao'];
       senha.login = row['login'];
       senha.senha = row['senha'];
-      senhas.add(senha as SenhasEntity);
+      senhas.add(senha);
     }
     return senhas;
   }
