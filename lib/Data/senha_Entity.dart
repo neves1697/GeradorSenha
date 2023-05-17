@@ -1,15 +1,21 @@
-import 'dart:html';
+import 'package:flutter/material.dart';
 
-class SenhasEntity {
-  late int? id;
-  late final String? descricao;
-  late final String? email;
-  late final String? senha;
+class SenhaEntity {
+  late int? senhaID;
+  late String? descricao;
+  late String? _login;
 
-  
-  SenhasEntity({
+  String? get login => _login;
+
+  set login(String? value) {
+    _login = value;
+  }
+
+  late String? senha;
+
+  SenhaEntity({
     this.descricao,
-    this.email,
-    this.senha
-  });
+    String? login,
+    this.senha,
+  }) : _login = login;
 }
