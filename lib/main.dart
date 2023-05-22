@@ -19,8 +19,8 @@ class MyApp extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color.fromARGB(255, 128, 208, 199),
-                Color.fromARGB(255, 54, 118, 202),
+                Color.fromARGB(227, 161, 238, 229),
+                Color.fromARGB(255, 236, 145, 18),
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -48,7 +48,7 @@ class _Login extends StatelessWidget {
             alignment: Alignment.center,
             padding: const EdgeInsets.all(10),
             child: const Text(
-              'TELA DE LOGIN APP',
+              'Gerenciador de senha',
               style: TextStyle(
                   color: Color.fromARGB(255, 2, 29, 51),
                   fontWeight: FontWeight.w500,
@@ -121,7 +121,7 @@ class _Login extends StatelessWidget {
                   'Cadastre aqui',
                   style: TextStyle(
                     fontSize: 20,
-                    color: Color.fromARGB(255, 243, 246, 249),
+                    color: Color.fromARGB(255, 29, 28, 27),
                   ),
                 ),
                 onPressed: () {

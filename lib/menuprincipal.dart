@@ -1,4 +1,5 @@
 import 'cadcartoes.dart';
+import 'listasenhas.dart';
 import 'perfilusuario.dart';
 import 'geradorsenha.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +13,8 @@ class menuprincipal extends StatelessWidget {
             child: ListView(
               children: [
                 UserAccountsDrawerHeader(
-                  accountName: Text("Nome"),
-                  accountEmail: Text("nome@gmail.com"),
+                  accountName: Text("Conta"),
+                  accountEmail: Text("anderson@gmail.com"),
                   currentAccountPicture: CircleAvatar(
                     radius: 30.0,
                     backgroundImage: NetworkImage(
@@ -59,6 +60,17 @@ class menuprincipal extends StatelessWidget {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                         return geradorSenha();
+                      }));
+                    }),
+                ListTile(
+                    leading: Icon(Icons.account_circle),
+                    title: Text("Lista de senhas"),
+                    subtitle: Text("Senhas"),
+                    trailing: Icon(Icons.arrow_forward),
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return listaSenhas();
                       }));
                     }),
               ],

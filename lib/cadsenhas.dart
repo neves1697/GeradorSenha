@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'Data/senha_entity.dart';
+import 'Data/senha_Entity.dart';
 import 'Data/senha_sqlite_datasource.dart';
 
 class cadsenhas extends StatefulWidget {

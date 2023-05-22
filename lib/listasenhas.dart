@@ -1,7 +1,7 @@
-import 'package:cadastroapp/cadsenhas.dart';
 import 'package:flutter/material.dart';
 import 'Data/senha_entity.dart';
 import 'Data/senha_sqlite_datasource.dart';
+import 'cadsenhas.dart';
 
 class listaSenhas extends StatelessWidget {
   @override
@@ -9,7 +9,7 @@ class listaSenhas extends StatelessWidget {
     return MaterialApp(
       title: "Lista de senhas",
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.amber,
       ),
       home: MyHomePage(),
     );
@@ -34,14 +34,14 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Lista de senhas"),
+        title: const Text("Lista de senhas"),
         actions: <Widget>[
           ElevatedButton(
             onPressed: () {
               senhaSQLiteDatasource().deletarSenhas();
               setState(() {});
             },
-            child: Text(
+            child: const Text(
               "Excluir todos",
               style: TextStyle(color: Colors.yellow),
             ),
@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
             (BuildContext context, AsyncSnapshot<List<SenhaEntity>> snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               itemCount: snapshot.data?.length,
               itemBuilder: (BuildContext context, int index) {
                 SenhaEntity item = snapshot.data![index];
@@ -62,30 +62,30 @@ class _MyHomePageState extends State<MyHomePage> {
                   key: UniqueKey(),
                   background: Container(color: Colors.red),
                   onDismissed: (direction) {
-                    senhaSQLiteDatasource().deletarSenhaID(item.senhaID!);
+                    senhaSQLiteDatasource().deletarSenhaID(item.senhaID);
                   },
                   child: ListTile(
                     title: Text(item.descricao!),
                     subtitle: Text(item.login!),
                     leading: CircleAvatar(child: Text(item.senhaID.toString())),
                     onTap: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => cadsenhas()));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const cadsenhas()));
                     },
                   ),
                 );
               },
             );
           } else {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
         },
       ),
       floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
           onPressed: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => cadsenhas()));
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const cadsenhas()));
           }),
     );
   }
