@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SenhaEntity {
-  late int? senhaID;
+  late int senhaID;
   late String? descricao;
   late String? _login;
 

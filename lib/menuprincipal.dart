@@ -50,7 +50,7 @@ class menuprincipal extends StatelessWidget {
                         return cadcartoes();
                       }));
                     }),
-                    ListTile(
+                ListTile(
                     leading: Icon(Icons.password_rounded),
                     title: Text("Gerador de Senhas"),
                     subtitle: Text("Gerador de Senhas..."),
@@ -65,7 +65,7 @@ class menuprincipal extends StatelessWidget {
             ),
           ),
           appBar: AppBar(
-              backgroundColor:Color.fromARGB(108, 67, 160, 129),
+              backgroundColor: Color.fromARGB(108, 67, 160, 129),
               title: const Text('Menu Principal')),
           body: Center(
             child: ElevatedButton(
@@ -83,7 +83,7 @@ class menuprincipal extends StatelessWidget {
               BottomNavigationBarItem(
                   icon: Icon(Icons.person),
                   label: "Minha conta",
-                  backgroundColor:Color.fromARGB(108, 67, 160, 129)),
+                  backgroundColor: Color.fromARGB(108, 67, 160, 129)),
               BottomNavigationBarItem(
                   icon: Icon(Icons.password),
                   label: "Senhas",

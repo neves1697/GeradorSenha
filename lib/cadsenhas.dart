@@ -1,6 +1,8 @@
-import 'package:cadastroapp/Data/senha_sqlite_datasource.dart';
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'Data/senha_entity.dart';
+import 'Data/senha_sqlite_datasource.dart';
 
 class cadsenhas extends StatefulWidget {
   const cadsenhas({Key? key}) : super(key: key);
