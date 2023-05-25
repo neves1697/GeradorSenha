@@ -90,7 +90,7 @@ class _Cadastro extends StatelessWidget {
             child: ElevatedButton(
               child: const Text('Cadastrar'),
               onPressed: () {
-                print("Click no cadastro de usuário");
+                CadastroUsuario();
               },
               style: ElevatedButton.styleFrom(
                 primary: Color.fromARGB(255, 9, 74, 127),
